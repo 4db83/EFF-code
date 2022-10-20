@@ -1,12 +1,13 @@
 # CLEAR SCREEN AND WORKSPACE ----
 # From: https://www.njtierney.com/post/2020/06/01/tidy-anscombe/
 cat("\014"); rm(list = ls()); gc()
+# some font controls
+windowsFonts("Palatino" = windowsFont("Palatino Linotype"))
 # load packages (if pacman not installed, install first with install.packages("pacman"))
 pacman::p_load(tidyverse, ggplot2, scales , extrafont, ggpubr, ggfortify)
 pacman::p_load(stats, ggpmisc)
 
 head(anscombe)
-
 
 tidy_anscombe <- anscombe %>%
   pivot_longer(cols = everything(),
@@ -24,16 +25,16 @@ head(tidy_anscombe)
 # tidy_anscombe_summary
  
 ### -------------
-windowsFonts("Palatino" = windowsFont("Palatino Linotype"))
-my.formula <- y ~ x
 fnt = 12
-ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
+
+my.formula <- y ~ x
+ggplot(anscombe, aes(x = x, y = y)) + theme_bw() +
   facet_wrap(~set, scales='free', strip.position="bottom") +
   theme(axis.text.x = element_text(size = fnt, hjust  = 0.58, vjust = 0.5 , colour = "black"),
         axis.text.y = element_text(size = fnt, colour = "black"),
         text        = element_text(size = fnt, family = "Palatino"),
         axis.ticks.length = unit( -1.5, "mm"),
-        strip.text = element_text(size = fnt), 
+        strip.text  = element_text(size = fnt), 
         strip.background = element_rect( colour="black", fill="white", linetype="blank"),
         strip.placement = "outside",
         panel.spacing = unit(1, "lines") )  +
@@ -52,4 +53,4 @@ ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
   scale_x_continuous(name = "X (independent variable)") +
   coord_cartesian( ylim = c(2.5, 12.5), xlim = c(5, 20) ) +
   grids(linetype = "dashed") + 
-  geom_point(size=3)
+  geom_point(size = 3)
