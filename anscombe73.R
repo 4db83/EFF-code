@@ -4,7 +4,7 @@ rm(list = ls()); cat("\014"); gc();
 options(digits = 8); options(scipen = 999);  options(max.print=10000); 
 windowsFonts("Palatino" = windowsFont("Palatino Linotype")); par(las=1) 
 # INSTALL PACMAN PACKAGE MANAGER IF NOT INSTALLED (Note: may need to disable windows firewall for packages to install)
-if (!"pacman" %in% installed.packages()){install.packages("pacman"); cat("pacman installed\n")}
+if (!require("pacman")) install.packages("pacman"); cat("pacman installed\n")
 # LOAD REQUIRED PACKAGES 
 pacman::p_load(tidyverse, ggplot2, scales , extrafont, ggpubr, ggfortify)
 pacman::p_load(stats, ggpmisc)
