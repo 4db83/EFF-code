@@ -39,7 +39,7 @@ ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
   stat_poly_eq(formula = my.formula, 
                eq.with.lhs = c("italic(Y)~`=`~ "),
                eq.x.rhs = "~italic(X)",
-               aes(label = paste(..eq.label.., ..rr.label.., sep = "*\",\"~~~")),
+               aes(label = paste(after_stat(eq.label), ..rr.label.., sep = "*\",\"~~~")),
                parse = TRUE) +
   scale_y_continuous(sec.axis = sec_axis( trans=~.*1), name = "Y (dependent variable)") + 
   scale_x_continuous(name = "X (independent variable)") +
