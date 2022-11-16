@@ -1,5 +1,6 @@
 % example of CLT to replicate the plot on page 10 of EFF-02.
 clear;clc;clf;
+rng(123);   % fix the random number generator see
 n = 100;    % sample size
 S = 5e5;    % number of simulations just for the histograms
 % generate draws from a Bernoulli RV with success probabilty = p
