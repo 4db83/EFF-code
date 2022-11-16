@@ -4,7 +4,7 @@ n = 100;    % sample size
 S = 5e5;    % number of simulations just for the histograms
 % generate draws from a Bernoulli RV with success probabilty = p
 p = 0.78;
-x = rand(n,S) < p;
+x = rand(S,n) < p;
 
 %%
 clf;
@@ -21,12 +21,12 @@ histogram(x5,25,'Normalization','probability');
 ylim([0 1/2])
 subtitle('n=5')
 subplot(2,2,3)
-histogram(x25,25,'Normalization','probability');
+histogram(x25,18,'Normalization','probability');
 ylim([0 1/4])
 xlim([0 1])
 subtitle('n=25')
 subplot(2,2,4)
-histogram(x100,25,'Normalization','probability');
+histogram(x100,38,'Normalization','probability');
 ylim([0 1/8])
 xlim([0 1])
 subtitle('n=100')
