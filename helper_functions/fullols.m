@@ -60,7 +60,7 @@ xpx 	= x'*x;
 invxpx= xpx\eye(K);
 % beta	= xpx\(x'*y);
 % USING PINV
-% invxpx  = pinv(xpx);            % using the pseudo inverse that X columns with eigenvalues less than some threshold
+% invxpx  = pinv(xpx);          % using the pseudo inverse that X columns with eigenvalues less than some threshold
 beta    = x\y;                  % same as QR in regress
 % beta	= invxpx*(x'*y);        % this is faster but more inaccurate
 

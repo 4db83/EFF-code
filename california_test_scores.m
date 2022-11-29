@@ -3,7 +3,7 @@ clc; clear;
 addpath(genpath('./helper_functions')) 
 % read in the data
 dt = readtable('./data/caschool.xlsx');
-% inspec the data that was loaded
+% inspect the data that was loaded
 head(dt);tail(dt);
 
 %% this is the main part that 
@@ -34,4 +34,3 @@ set(gca,'Position',[.06 .4 .9 .3],...
 ylabel('Test Score');
 xlabel('Student-Teacher-Ratio')
 box on;
-
