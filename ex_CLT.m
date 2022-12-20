@@ -2,7 +2,7 @@
 clear;clc;clf;
 rng(123);   % fix the random number generator see
 n = 100;    % sample size
-S = 5e5;    % number of simulations just for the histograms
+S = 1e6;    % number of simulations just for the histograms
 % generate draws from a Bernoulli RV with success probabilty = p
 p = 0.78;
 x = rand(S,n) < p;
