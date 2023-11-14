@@ -4,7 +4,7 @@ addpath(genpath('./helper_functions'))
 % read in the data
 dt = readtable('./data/caschool.xlsx');
 % inspect the data that was loaded
-head(dt);tail(dt);
+% head(dt);tail(dt);
 
 %% this is the main part that 
 y = dt.testscr;
@@ -15,8 +15,8 @@ xg = [ones(length(xg),1) xg];
 
 fprintf([repmat('=',1,90) '\n']);
 fprintf('\t\t\t\t\t Dependent Variable: Test Score\n')
-% the is the call to the OLS function
-fit1 = ols(y,x,[],[],0);
+% CALL TO THE OLS FUNCTION
+fit1 = ols(y,x,0,[],0);
 
 clf; % clear old figures, if exis;
 hold on; % to plot multiple lines on top

@@ -122,10 +122,16 @@ olsout.VCV			= VCV;			% Simple Variance/Covariance Matrix
 % INFORMATION CRITERIA (log(L) = -(T/2)*log(SSE/T) for GAUSSIAN LOG LIKELIHOOD)
 % ALL INFOCRITERIA ARE OF THE FORM -2log(L) + P, WHERE P IS A PENALTY
 MSE_	= SSE/T;
-IC_AIC 	= T*log(MSE_) + 2*K;		
-IC_BIC	= T*log(MSE_) + K*log(T);
-IC_AICc = IC_AIC			+ 2*K*(K+1)/(T-K-1);
-IC_HQ		= T*log(MSE_) + 2*K*log(log(T));
+% IC_AIC 	= T*log(MSE_) + 2*K;		
+% IC_BIC	= T*log(MSE_) + K*log(T);
+% IC_AICc = IC_AIC			+ 2*K*(K+1)/(T-K-1);
+% IC_HQ		= T*log(MSE_) + 2*K*log(log(T));
+
+% base on the LL (or above alternative definition based on the MSE) (THIS IS THE SAME AS Eviews)
+IC_AIC 	= -2*LL + 2*K;		
+IC_BIC	= -2*LL + K*log(T);
+IC_AICc = IC_AIC+ 2*K*(K+1)/(T-K-1);
+IC_HQ		= -2*LL + 2*K*log(log(T));
 
 % DEFLATE BY SAMPLE SIZE T (or N) TO BE CONSISTENT WITH STANDARD SOFTWARE OUTPUT.
 olsout.aic	= IC_AIC/T;
