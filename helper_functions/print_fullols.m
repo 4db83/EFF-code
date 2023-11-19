@@ -51,7 +51,7 @@ if KK == 0
 	in.rnames = [{'Variable';'Constant'}];
 end
 
-in.fmt    = strvcat('%16.6f');
+in.fmt    = strvcat('%16.10f');
 % fprintf('===============================================================================\n');
 sep(90,'=')
 		myprint(outp,in,[],[],[],WDTH);
