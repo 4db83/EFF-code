@@ -13,14 +13,19 @@ invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), sou
 ## SCRIPT: starts here ----
 # read the data from .XLSX file in directory ./data
 CASchools = read_xlsx("./data/caschool.xlsx")
+CASchools$Hi_EL = as.numeric(CASchools$el_pct >= 10)
 # RUN OLS REGRESSION
-ols0 = lm(testscr ~ str, data = CASchools)
+ols1a = lm(testscr ~ str, data = CASchools)
 cat("             Dependent Variable: Student-Teacher-Ratio (str) \n")
-ols1 = print_results(ols0)
+ols1b = print_results(ols1a)
 
 # plot the results for visual clarity-
 plot(CASchools$str,CASchools$testscr,xlim = c(10,30), las = 1, ylim = c(600,750),
      xlab="Student-Teacher Ratio", ylab="Test Score", pch = 16, col = rgb(.1,.45,.75))
 abline(h = mean(CASchools$testscr))
 abline(v = mean(CASchools$str))
-abline(ols0, col = rgb(.85,.22,.1), lw = 2)
+abline(ols1a, col = rgb(.85,.22,.1), lw = 2)
+
+# adding interaction dummies
+ols2a = lm(testscr ~ str + str*Hi_EL+ Hi_EL, data = CASchools)
+ols2b = print_results(ols2a)
