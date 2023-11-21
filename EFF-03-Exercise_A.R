@@ -21,3 +21,4 @@ log_change  = 100*(log(Sales_2014) - log(Sales_2013))
 cat(sprintf('     Change is:  %.4f%%\n',     change))
 cat(sprintf(' Log-Change is:  %.4f%%\n', log_change))
 
+
