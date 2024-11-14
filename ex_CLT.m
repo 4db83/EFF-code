@@ -7,12 +7,13 @@ S = 1e6;    % number of simulations just for the histograms
 p = 0.78;
 x = rand(S,n) < p;
 
-%
+%%
 clf;
 x2    = mean(x(:,1:2  ) ,2);
 x5    = mean(x(:,1:5  ) ,2);
 x25   = mean(x(:,1:25 ) ,2);
 x100  = mean(x(:,1:100) ,2);
+
 subplot(2,2,1)
 histogram(x2,25,'Normalization','probability');
 subtitle('$n=2$','Interpreter','Latex','Units','normalized','Position',[.5 .95],'FontSize',14)
@@ -27,6 +28,7 @@ ylim([0 1/4])
 xlim([0 1])
 subtitle('$n=25$','Interpreter','Latex','Units','normalized','Position',[.5 .95],'FontSize',14)
 subplot(2,2,4)
+% histogram((x100-mean(x100))/std(x100),38,'Normalization','probability');
 histogram(x100,38,'Normalization','probability');
 ylim([0 1/8])
 xlim([0 1])
