@@ -1,10 +1,8 @@
 clear; clf; clc;
 % set plotting defaults
-set(groot,'defaultLineLineWidth',2)
-set(groot,'defaultAxesFontSize',14)
+set(groot,'defaultLineLineWidth',2); set(groot,'defaultAxesFontSize',14)
 set(groot,'defaultAxesXTickLabelRotationMode','manual')
 set(groot,'defaultAxesFontName','Times New Roman')
-
 % set path to local toolbox if needed
 % addpath(genpath('D:\matlab.tools\db.toolbox\db'))
 addpath(genpath('./helper_functions')) 
@@ -51,3 +49,6 @@ ylabel('$\hat{Y}$','Interpreter','latex');
 xlabel('$X$','Interpreter','latex');
 legend({'$\hat{Y} = 1 + 125X - 0.01X^2$'}, ...
   'Interpreter','latex','Location','best');
+
+
+
