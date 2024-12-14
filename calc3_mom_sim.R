@@ -18,7 +18,7 @@ pacman::p_load(tictoc,matlab,ggplot2,gridExtra,scales);
 
 a <- 3
 b <- 10
-T <- 5e2      # sample size T
+T <- 2e2      # sample size T
 nSims <- 1e5  # number of simulations used for the sampling distribution
 
 # Generate random gamma samples
