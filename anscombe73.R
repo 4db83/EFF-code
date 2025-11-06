@@ -6,7 +6,6 @@ windowsFonts("Palatino" = windowsFont("Palatino Linotype")); par(las=1)
 # INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
 # LOAD REQUIRED PACKAGES 
-# pacman::p_load(tidyverse, scales , extrafont, ggpmisc, stats)
 pacman::p_load(tidyverse,scales,extrafont,stats,ggpmisc,ggpubr,ggfortify)
 
 # check the loaded data
