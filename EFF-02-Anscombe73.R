@@ -21,29 +21,37 @@ tidy_anscombe     = arrange(tidy_anscombe, set, x)
 # print(tidy_anscombe,n=100)
 
 ### -------------
-fnt = 12
+fnt = 15
 my.formula <- y ~ x
 ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
   facet_wrap(~set, scales='free', strip.position="bottom") +
   theme(axis.text.x = element_text(size = fnt, hjust  = 0.58, vjust = 0.5 , colour = "black"),
         axis.text.y = element_text(size = fnt, colour = "black"),
-        text        = element_text(size = fnt, family = "serif"),
+        text        = element_text(size = fnt+3, family = "serif"),
         axis.ticks.length = unit( -1.5, "mm"),
         strip.text = element_text(size = fnt),
         strip.background = element_rect( colour="black", fill="white", linetype="blank"),
         strip.placement = "outside",
-        panel.spacing = unit(1, "lines") )  +
-  geom_smooth(method = "lm", se = FALSE, formula = my.formula) +
+        panel.spacing = unit(1, "lines"),
+        axis.title.y = element_text( margin = margin(r = 14) ),
+        # Remove inner facet axes
+        # axis.text.x.top = element_blank(),
+        # axis.text.y.right = element_blank(),
+        )  +
+  geom_smooth( method = "lm", se = FALSE, 
+               formula = my.formula ) +
   stat_poly_eq(formula = my.formula,
                eq.with.lhs = c("hat(Y)[i]~`=`~ "),
                eq.x.rhs = "~X[i]", family = "serif", size = 4.5, fontface = "italic", 
                aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "*\",\"~~~")),
-               parse = TRUE) +
-  scale_y_continuous(sec.axis = sec_axis( trans=~.*1), name = "Y (dependent variable)") +
-  scale_x_continuous(name = "X (independent variable)") +
+               parse = TRUE,
+               ) +
+  scale_y_continuous( name = "Y (dependent variable)", 
+                      sec.axis = sec_axis( trans=~.*1)  ) +
+  scale_x_continuous( name = "X (independent variable)" ) +
   coord_cartesian( ylim = c(2.5, 12.5), xlim = c(5, 20) ) +
-  grids(linetype = "dashed") +
-  geom_point(size=2.5)
+  grids( linetype = "dashed" ) +
+  geom_point( size=2.5 )
 
 
 
