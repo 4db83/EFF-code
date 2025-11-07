@@ -1,4 +1,4 @@
-print.results = function(lm.Object, HAC.type = 0, digits = 8, Prewhite = FALSE, mLag = ceiling(0.75*N^(1/3)), Hide = 0){
+print_lm_results = function(lm.Object, HAC.type = 0, digits = 8, Prewhite = FALSE, mLag = ceiling(0.75*N^(1/3)), Hide = 0){
   # HAC.type =-2 -->  homoskedastic OLS not recommended
   # HAC.type =-1 -->  White (1982) no DF adjustment 
   # HAC.type = 0 -->  White (1982) with DF adjustment, MacKinnon and White (1985).
@@ -118,7 +118,7 @@ print.results = function(lm.Object, HAC.type = 0, digits = 8, Prewhite = FALSE, 
   # print here some other info
   if (!Hide){
     cat(strrep("-", wdth)); cat("\n")
-    print( round.df(bdf, digits = digits), row.names = FALSE)
+    print( round_df(bdf, digits = digits), row.names = FALSE)
     # print( round.df(bdf, digits = 6), col.names = FALSE)
     cat(strrep("-", wdth))}
   # browser()
@@ -177,7 +177,7 @@ print.results = function(lm.Object, HAC.type = 0, digits = 8, Prewhite = FALSE, 
   xdf[,5] = c(": ")
   xdf[,6] = Col4
   if (!Hide){
-    print(round.df(xdf, digits = digits))
+    print(round_df(xdf, digits = digits))
     cat(strrep("-", wdth)); cat("\n")
     # stderr_type = 
     if (HAC.type ==-2)      { stderr_type = "Homoskedastic OLS inv(X'X)σ²" }
@@ -223,7 +223,7 @@ print.results = function(lm.Object, HAC.type = 0, digits = 8, Prewhite = FALSE, 
 # rounding of data frame function for nice looking table output with columns of
 # characters
 #----------------------------------------------------------------------------
-round.df <- function(x, digits) {
+round_df <- function(x, digits) {
   # round all numeric variables
   # x: data frame 
   # digits: number of digits to round
