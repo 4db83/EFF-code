@@ -70,7 +70,7 @@ for (n in 1:N){
         xaxt = "n",  # Remove default x-axis
       )
   # axis(1, at = seq(0.0, 1.00, by = 0.05), cex.axis = 1.1)
-  axis(1, at = c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0), cex.axis = 1.1)
+  axis(1, at = c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0), cex.axis = fnt-.1)
   
   # hist(p.hat[,n],
   #      col = "steelblue",

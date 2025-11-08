@@ -17,7 +17,7 @@ CASchools = read_xlsx("./data/caschool.xlsx")
 CASchools$Hi_EL = as.numeric(CASchools$el_pct >= 10)
 # RUN OLS REGRESSION
 lm.testscr_str    = lm(testscr ~ str, data = CASchools)
-prnt.testscr_str  = print.results(lm.testscr_str)
+prnt.testscr_str  = print_lm_results(lm.testscr_str)
 
 # plot the results for visual clarity----
 plot(CASchools$str,CASchools$testscr,xlim = c(10,30), las = 1, ylim = c(600,750),
@@ -28,7 +28,7 @@ abline(lm.testscr_str, col = rgb(.85,.22,.1), lw = 2)
 
 # adding interaction dummies
 lm.testscr_str_HiEL = lm(testscr ~ str + str*Hi_EL+ Hi_EL, data = CASchools)
-prnt.testscr_str_HiEL = print.results(lm.testscr_str_HiEL)
+prnt.testscr_str_HiEL = print_lm_results(lm.testscr_str_HiEL)
 
 plot(CASchools$str,CASchools$testscr,xlim = c(10,30), las = 1, ylim = c(600,710),
      xlab="Student-Teacher Ratio", ylab="Test Score", pch = 16, col = rgb(.1,.45,.75))
@@ -52,10 +52,10 @@ ols5a  = lm( testscr ~ avginc                             , data = CASchools)
 ols6a  = lm( testscr ~ avginc + I(avginc^2)               , data = CASchools)
 ols7a  = lm( testscr ~ avginc + I(avginc^2) + I(avginc^3) , data = CASchools)
 ols8a  = lm( testscr ~ log(avginc)                        , data = CASchools)
-ols5b  = print.results(ols5a)
-ols6b  = print.results(ols6a)
-ols7b  = print.results(ols7a)
-ols8b  = print.results(ols8a)
+ols5b  = print_lm_results(ols5a)
+ols6b  = print_lm_results(ols6a)
+ols7b  = print_lm_results(ols7a)
+ols8b  = print_lm_results(ols8a)
 # plot((CASchools$avginc),(CASchools$testscr),
 # par(mar = c(6, 5, 1, 1))
 plot( (CASchools$avginc),(CASchools$testscr), family = "serif",
@@ -87,8 +87,8 @@ text(50, 705, "Linear-Log Regression",  cex = 1.3, col = 5, family = "serif")
 cat("\014")
 lm.loglog  = lm( log(testscr) ~ log(avginc) , data = CASchools)
 lm.loglin  = lm( log(testscr) ~ avginc      , data = CASchools)
-prnt.loglog = print.results(lm.loglog)
-prnt.loglin = print.results(lm.loglin)
+prnt.loglog = print_lm_results(lm.loglog)
+prnt.loglin = print_lm_results(lm.loglin)
 # plot((CASchools$avginc),(CASchools$testscr),
 plot((CASchools$avginc),log(CASchools$testscr), family = "serif",
      xlim = c(5,60), las = 1, cex.lab = 1.3, cex.axis = 1.25,
