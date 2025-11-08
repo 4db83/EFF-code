@@ -18,12 +18,12 @@ CASchools$Hi_EL = as.numeric(CASchools$el_pct >= 10)
 lm.testscr_str    = lm(testscr ~ str, data = CASchools)
 prnt.testscr_str  = print_lm_results(lm.testscr_str)
 
-# plot the results for visual clarity----
+# PLOT THE RESULTS FOR VISUAL CLARITY----
 par( family = "serif", las = 1, 
 mgp = c(3.5, .5, 0),   # axis title, labels, line, position of y,x labels to axis
 mar = c(5, 5, 5, 3),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
 oma = c(1, 1, 1, 1),   # outer margins for overall spacing
-tcl = -0.25             # shorter tick marks
+tcl = -0.25            # shorter tick marks
 )
 # font size
 fnt = 1.35
@@ -40,13 +40,14 @@ plot( CASchools$str, CASchools$testscr,
       cex.axis = fnt-.1,
       xaxt = "n", yaxt = "n",  # Remove default y,x-axis labels
      )
-TL = .15
+
+# ADJUST AXIS TICKS ETC
+set_axis_ticks(tcl = .15, cex = fnt)
+abline(lm.testscr_str, col = rgb(.85,.22,.1), lw = 2)
 # axis(1, at = seq(10.0, 30.00, by = 5), cex.axis = fnt-.1, tcl = tickLength )
 # axis(1, at = c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0), cex.axis = fnt-.1, tcl = tickLength )
-set_axis_ticks(tcl = TL, cex = fnt)
-abline(lm.testscr_str, col = rgb(.85,.22,.1), lw = 2)
 
-# Add equation to plot
+# ADD EQUATION TO PLOT
 coefs <- coef(lm.testscr_str)
 eq_text <- bquote(widehat(italic(TestScore[i])) == .(round(coefs[1], 2)) -
                      .(abs(round(coefs[2], 4))) %*% italic(STR[i]))
