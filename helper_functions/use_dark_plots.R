@@ -1,6 +1,6 @@
 use_dark_plots = function( background_color = NULL) {
   # set background_color dark as default
-  if (is.null(background_color)) { background_color <- "Gray 4" }
+  if (is.null(background_color)) { background_color <- "Gray 3" }
     # Convert background color to RGB and calculate luminance
   bg_rgb <- col2rgb(background_color)
   bg_luminance <- (0.299 * bg_rgb[1,] + 0.587 * bg_rgb[2,] + 0.114 * bg_rgb[3,]) / 255
