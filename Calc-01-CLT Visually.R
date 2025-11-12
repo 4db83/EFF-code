@@ -17,7 +17,7 @@ N.size = max(sample.sizes)
 N = length(sample.sizes)
 
 # set seed for reproducibility ----
-set.seed(1234)
+set.seed(1)
 p = 0.78  # success probability
 
 Brn.rvs = matrix( as.integer( runif(N.reps*N.size) < p ), nrow = N.reps, ncol = N.size)
