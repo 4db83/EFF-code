@@ -1,5 +1,14 @@
 use_dark_plots = function( background_color = NULL) {
-  # set background_color dark as default
+#-------------------------------------------------------------------------------------------------
+# Set background color to dark as default
+#-------------------------------------------------------------------------------------------------
+# Call as:  use_dark_plots() or use_dark_plots("white") , use_dark_plots("black") etc  
+#           anywhere before par()
+#           default is to use "Gray 3", 
+#           can set it to "black" or "white" to undo the dark 
+#           background when used for printing to pdf
+#------------------------------------------------------------------------------------------------- 
+
   if (is.null(background_color)) { background_color <- "Gray 3" }
     # Convert background color to RGB and calculate luminance
   bg_rgb <- col2rgb(background_color)

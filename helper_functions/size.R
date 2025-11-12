@@ -1,5 +1,10 @@
 size <- function(obj) {
-# returns size of the object of interest  
+#-------------------------------------------------------------------------------------------------
+# Returns the size of the object of interest  
+#-------------------------------------------------------------------------------------------------
+# Call as:  size(Object of interest) can be anything, will return size as well as type.
+#------------------------------------------------------------------------------------------------- 
+
   obj_name <- deparse(substitute(obj))
   obj_dims <- dim(obj)
   obj_length <- length(obj)

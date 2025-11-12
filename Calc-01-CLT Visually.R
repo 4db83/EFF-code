@@ -11,7 +11,7 @@ functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 
 # set the number of repetitions and the sample sizes
-N.reps = 1e6
+N.reps = 1e5
 sample.sizes = c(2, 5, 25, 100)
 N.size = max(sample.sizes)
 N = length(sample.sizes)
@@ -35,6 +35,7 @@ for (n in 1:N){
 toc()
 
 # now do the plotting of the histogram ----
+use_dark_plots()            # dark background,  change use_dark_plots("white)
 # subdivide the plot panel into a 2-by-2 array
 par( mfrow = c(2, 2), family = "serif", las = 1, 
      mgp = c(2.9, .5, 0),   # axis title, labels, line, position of y,x labels to axis
@@ -71,6 +72,8 @@ for (n in 1:N){
       )
   # axis(1, at = seq(0.0, 1.00, by = 0.05), cex.axis = 1.1)
   axis(1, at = c(0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0), cex.axis = fnt-.1)
+  
+  
   
   # hist(p.hat[,n],
   #      col = "steelblue",
