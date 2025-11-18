@@ -26,7 +26,7 @@ if (print2pdf == 1){ pdf( paste0(path2graphics, "California Test Scores Dummy Ex
 
 # PLOT FIT AND SCATTER
 fnt = 1.45 # font size
-op = par( family = "serif", las = 1, 
+op = par( mfrow = c(1, 1), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
           mar = c(5, 4, 5, 3),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
