@@ -1,4 +1,4 @@
-# CLEAR SCREEN AND WORKSPACE ----
+# %% CLEAR SCREEN AND WORKSPACE
 rm(list = ls()); cat("\014"); gc(); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
@@ -12,15 +12,15 @@ head(anscombe)
 
 # re-arrange the data to be able to plot it using the format belwo
 tidy_anscombe <- anscombe %>%
-  pivot_longer(cols = everything(),
-               names_to = c(".value", "set"),
-               names_pattern = "(.)(.)")
+  pivot_longer(	cols = everything(),
+                names_to = c(".value", "set"),
+                names_pattern = "(.)(.)")
 tidy_anscombe$set = paste0("Data set ", tidy_anscombe$set)
 # sort on data set, and then ascending in xtraceback()
 tidy_anscombe     = arrange(tidy_anscombe, set, x)
 # print(tidy_anscombe,n=100)
 
-### -------------
+# %% PLOTS
 fnt = 15
 my.formula <- y ~ x
 ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
@@ -38,14 +38,14 @@ ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
         # axis.text.x.top = element_blank(),
         # axis.text.y.right = element_blank(),
         )  +
-  geom_smooth( method = "lm", se = FALSE, 
-               formula = my.formula ) +
-  stat_poly_eq(formula = my.formula,
-               eq.with.lhs = c("hat(Y)[i]~`=`~ "),
-               eq.x.rhs = "~X[i]", family = "serif", size = 4.5, fontface = "italic", 
-               aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "*\",\"~~~")),
-               parse = TRUE,
-               ) +
+  geom_smooth(method = "lm", se = FALSE, 
+              formula = my.formula ) +
+  stat_poly_eq(	formula = my.formula,
+                eq.with.lhs = c("hat(Y)[i]~`=`~ "),
+                eq.x.rhs = "~X[i]", family = "serif", size = 4.5, fontface = "italic", 
+                aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "*\",\"~~~")),
+                parse = TRUE,
+                ) +
   scale_y_continuous( name = "Y (dependent variable)", 
                       sec.axis = sec_axis( trans=~.*1)  ) +
   scale_x_continuous( name = "X (independent variable)" ) +

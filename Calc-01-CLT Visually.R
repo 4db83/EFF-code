@@ -1,4 +1,4 @@
-# CLEAR SCREEN AND WORKSPACE ----
+# %% CLEAR SCREEN AND WORKSPACE
 rm(list = ls()); cat("\014"); gc(); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
@@ -16,7 +16,7 @@ sample.sizes = c(2, 5, 25, 100)
 N.size = max(sample.sizes)
 N = length(sample.sizes)
 
-# set seed for reproducibility ----
+# set seed for reproducibility 
 set.seed(1)
 p = 0.78  # success probability
 
@@ -34,8 +34,8 @@ for (n in 1:N){
 }
 toc()
 
-# now do the plotting of the histogram ----
-use_dark_plots()            # dark background,  change use_dark_plots("white)
+# %% now do the plotting of the histogram 
+# use_dark_plots()            # dark background,  change use_dark_plots("white)
 # subdivide the plot panel into a 2-by-2 array
 par(mfrow = c(2, 2), family = "serif", las = 1, 
     mgp 	= c(2.9, .5, 0),   # axis title, labels, line, position of y,x labels to axis

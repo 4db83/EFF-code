@@ -1,4 +1,4 @@
-# CLEAR SCREEN AND WORKSPACE ----
+# %% CLEAR SCREEN AND WORKSPACE
 rm(list = ls()); cat("\014"); gc(); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
@@ -12,12 +12,12 @@ invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), sou
 # set to 1 to print to pdf instead of screen
 print2pdf = 0
 path2graphics = "../source.tex.files/graphics/"
-# path2graphics = ""
+path2graphics = ""
 pdf_name  = "EFF-06-Poisson MoM Example.pdf"
 if (print2pdf == 1){ pdf( paste0(path2graphics, pdf_name), onefile = TRUE, 
                           width = 11.1, height = 6 ) }
 
-# MAIN SCRIPT: starts here -----
+# %% MAIN SCRIPT: starts here 
 set.seed(1)
 yLims = c(0,.15)
 xLims = c(-0,20)
@@ -50,8 +50,7 @@ results_df <- data.frame(
 cat("Variance of the two MoM Estimators \n")
 print( format(results_df, digits = 4, nsmall = 4), row.names = FALSE )
 
-
-# PLOT FIT AND SCATTER ---------
+# %% PLOT FIT AND SCATTER 
 fnt = 1.45 # font size
 use_dark_plots()
 op = par( mfrow = c(1, 2), family = "serif", las = 1, 
@@ -100,37 +99,6 @@ for (n in 1:2){
         col = "red",
         cex = fnt-.1)
  }
-
-# for (n in 1:2){
-#   hist(lambda.hat[,n],
-#        col = "steelblue",
-#        freq = FALSE,
-#        breaks = "Scott",
-#        xlim = xLims,
-#        ylim = yLims,
-#        xlab = colnames(lambda.hat)[n],  # Correct syntax
-#        main = "",
-#        ylab = "Probability",
-#        # Font sizes
-#        cex.main = 1.8,
-#        cex.lab  = fnt,
-#        cex.axis = fnt-.2,
-#   )
-# }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

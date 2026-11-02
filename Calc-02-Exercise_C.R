@@ -1,4 +1,4 @@
-## PREAMBLE: clear screen/workspace -----
+# %% PREAMBLE: clear screen/workspace 
 cat("\014"); rm(list = ls()); gc();
 # SET DEFAULTS: display options, font and y axis label rotation
 options(digits = 12); options(scipen = 999);  options(max.print=10000)
@@ -10,7 +10,7 @@ pacman::p_load(dplyr,readxl,sandwich)
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 
-## Question 1) a to c. -----
+# %% Question 1) a to c.
 Sales_2013 = 196
 Sales_2014 = 500
 

@@ -1,4 +1,4 @@
-# %% CLEAR SCREEN AND WORKSPACE ----
+# %% CLEAR SCREEN AND WORKSPACE
 rm(list = ls()); cat("\014"); gc(); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
@@ -24,7 +24,7 @@ path2graphics = ""
 if (print2pdf == 1){ pdf( paste0(path2graphics, "California Test Scores Dummy Example.pdf"),
                           width = 11.1, height = 7.6, onefile = TRUE ) }
 
-# %% PLOT FIT AND SCATTER
+# %%
 fnt = 1.45 # font size
 op = par( mfrow = c(1, 1), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
