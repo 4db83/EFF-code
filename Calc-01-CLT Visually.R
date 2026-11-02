@@ -37,11 +37,11 @@ toc()
 # now do the plotting of the histogram ----
 use_dark_plots()            # dark background,  change use_dark_plots("white)
 # subdivide the plot panel into a 2-by-2 array
-par( mfrow = c(2, 2), family = "serif", las = 1, 
-     mgp = c(2.9, .5, 0),   # axis title, labels, line, position of y,x labels to axis
-     mar = c(5, 5, 0, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
-     oma = c(1, 1, 1, 1),   # outer margins for overall spacing
-     tcl = -0.3             # shorter tick marks
+par(mfrow = c(2, 2), family = "serif", las = 1, 
+    mgp 	= c(2.9, .5, 0),   # axis title, labels, line, position of y,x labels to axis
+    mar 	= c(5, 5, 0, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
+    oma 	= c(1, 1, 1, 1),   # outer margins for overall spacing
+    tcl 	= -0.3             # shorter tick marks
     )
 # font size
 fnt = 1.35

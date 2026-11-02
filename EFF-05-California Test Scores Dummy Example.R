@@ -1,4 +1,4 @@
-# CLEAR SCREEN AND WORKSPACE ----
+# %% CLEAR SCREEN AND WORKSPACE ----
 rm(list = ls()); cat("\014"); gc(); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
@@ -24,7 +24,7 @@ path2graphics = ""
 if (print2pdf == 1){ pdf( paste0(path2graphics, "California Test Scores Dummy Example.pdf"),
                           width = 11.1, height = 7.6, onefile = TRUE ) }
 
-# PLOT FIT AND SCATTER
+# %% PLOT FIT AND SCATTER
 fnt = 1.45 # font size
 op = par( mfrow = c(1, 1), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
@@ -32,7 +32,7 @@ op = par( mfrow = c(1, 1), family = "serif", las = 1,
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
 
-use_dark_plots()
+# use_dark_plots()
 if (print2pdf == 1) {use_dark_plots("white") }
 
 plot( subset(CASchools$str,    CASchools$Hi_EL == 1), 
@@ -53,8 +53,8 @@ plot( subset(CASchools$str,    CASchools$Hi_EL == 1),
 # add scatter for Hi_EL == 0
 points( subset(CASchools$str,     CASchools$Hi_EL == 0),
         subset(CASchools$testscr, CASchools$Hi_EL == 0),
-   pch = 16,
-   col = "red3"
+        pch = 16,
+        col = "red3"
 )
 
 # ADJUST AXIS TICKS ETC
@@ -71,17 +71,17 @@ lines(xgrd, predict(lm.testscr_str_HiEL,
       col = "red3", lwd = 3)
 
 legend("topright", 
-       legend  = c("High Hi-EL", "Low Hi-EL"),
-       col     = c("steelblue", "red3"), 
-       lwd = 3, bty = "o"  )
+        legend  = c("High Hi-EL", "Low Hi-EL"),
+        col     = c("steelblue", "red3"), 
+        lwd = 3, bty = "o"  )
 
 # ADD EQUATION TO PLOT 
 coefs <- coef(lm.testscr_str_HiEL)
 eq_text_D0 <- bquote(widehat(italic(TestScore[i])) == .(round(coefs[1], 2)) -
-                     .(abs(round(coefs[2], 2))) %*% italic(STR[i]))
+              .(abs(round(coefs[2], 2))) %*% italic(STR[i]))
 
 eq_text_D1 <- bquote(widehat(italic(TestScore[i])) == .(round( coefs[1]+coefs[3], 2)) -
-                     .(abs(round( coefs[2]+coefs[4], 2))) %*% italic(STR[i]))
+              .(abs(round( coefs[2]+coefs[4], 2))) %*% italic(STR[i]))
 
 # add equations for D=1
 text( x = max(CASchools$str)*.82,
