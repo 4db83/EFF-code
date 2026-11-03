@@ -20,17 +20,17 @@ N = length(sample.sizes)
 set.seed(1)
 p = 0.78  # success probability
 
-Brn.rvs = matrix( as.integer( runif(N.reps*N.size) < p ), nrow = N.reps, ncol = N.size)
-# Brn.rvs = as.integer(U.rvs < p)
-# tic();Brn.rvs = ifelse(U.rvs < p, 1, 0);toc()
+Bernoulli.Y  = matrix( as.integer( runif(N.reps*N.size) < p ), nrow = N.reps, ncol = N.size)
+# Bernoulli.Y  = as.integer(U.rvs < p)
+# tic();Bernoulli.Y  = ifelse(U.rvs < p, 1, 0);toc()
 
 # make storage
 p.hat = matrix( data = NA, nrow = N.reps, ncol = N )
 p.std = matrix( data = NA, nrow = N.reps, ncol = N )
 tic();  
 for (n in 1:N){
-  p.hat[,n] = rowMeans(Brn.rvs[,1:sample.sizes[n]]);
-  p.std[,n] = rowSds(Brn.rvs[,1:sample.sizes[n]]);
+  p.hat[,n] = rowMeans(Bernoulli.Y [,1:sample.sizes[n]]);
+  p.std[,n] = rowSds(Bernoulli.Y [,1:sample.sizes[n]]);
 }
 toc()
 
@@ -44,7 +44,7 @@ par(mfrow = c(2, 2), family = "serif", las = 1,
     tcl 	= -0.3             # shorter tick marks
     )
 # font size
-fnt = 1.35
+fnt = 1.85
 
 # do this manually as R's base function returns the density/probability, 
 # not the "relative frequency of each bin"  

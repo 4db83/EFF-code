@@ -8,16 +8,16 @@ if(!"pacman" %in% installed.packages()){install.packages("pacman")}
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
-print2pdf = 1
-path2graphics = "../source.tex.files/graphics/"
-path2graphics = ""
+print2pdf = 0
+path2graphics = "../_tex.source.files/graphics/"
+# path2graphics = ""
 
 # %% CONSISTENCY OF THE SAMPLE MEAN (Lecture 2): Ybar_n = (1/n) sum_{i=1}^n Y_i  -->p  mu_Y as n -> infinity
 # draw one long i.i.d. sample and compute the sample mean for every sample size n = 1, ..., N
 N     = 5000      # largest sample size
 mu.Y  = 1         # population mean
 sig.Y = 1         # population standard deviation
-set.seed(11458)   # gives a path like the one on the slide; change the seed to see a different sample path
+set.seed(1234)   # gives a path like the one on the slide; change the seed to see a different sample path
 Y     = rnorm(N, mean = mu.Y, sd = sig.Y)
 n     = 1:N
 Y.bar = cumsum(Y)/n
