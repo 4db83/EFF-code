@@ -98,7 +98,7 @@ for (n in 1:2){
         labels = paste0("Var = " ,round(var(lambda.hat[,n]),2)), pos = 4,
         col = "red",
         cex = fnt-.1)
- }
+}
 
 
 
