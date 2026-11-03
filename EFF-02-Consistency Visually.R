@@ -30,7 +30,7 @@ for (k in c(10, 100, 1000, 5000)) {
 # %% PLOT THE SAMPLE MEAN AGAINST THE SAMPLE SIZE
 add_bands = 0                 # set to 1 to add the band mu.Y +/- 1.96 sig.Y/sqrt(n)
 if (print2pdf == 1){ pdf( paste0(path2graphics, "EFF-02-Consistency Visually.pdf"), width = 10, height = 6 ) }
-fnt = 1.8 # font size
+fnt = 1.9 # font size
 yos = .005
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
