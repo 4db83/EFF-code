@@ -18,10 +18,10 @@ path2graphics = ""
 # a. enter the joint PMF: rows are X = 1,5,8, columns are Y = 14,22,30,40,65
 x.vals = c(1, 5, 8)
 y.vals = c(14, 22, 30, 40, 65)
-P.xy   = matrix( c(0.02, 0.05, 0.10, 0.03, 0.01,
-                   0.17, 0.15, 0.05, 0.02, 0.01,
-                   0.02, 0.03, 0.15, 0.10, 0.09), nrow = 3, byrow = TRUE,
-                 dimnames = list(paste0("X=",x.vals), paste0("Y=",y.vals)) )
+P.xy   = matrix(c(0.02, 0.05, 0.10, 0.03, 0.01,
+                  0.17, 0.15, 0.05, 0.02, 0.01,
+                  0.02, 0.03, 0.15, 0.10, 0.09), nrow = 3, byrow = TRUE,
+                  dimnames = list(paste0("X=",x.vals), paste0("Y=",y.vals)) )
 cat(sprintf(' Sum of joint probabilities: %.4f\n', sum(P.xy)))
 p.x = rowSums(P.xy)    # marginal of X
 p.y = colSums(P.xy)    # marginal of Y
@@ -53,13 +53,13 @@ cat(sprintf(' E[Var(Y|X)] + Var[E(Y|X)] = %.4f + %.4f = %.4f  vs  Var(Y) = %.4f\
 
 # e. simulate from the joint distribution and compare sample with population moments
 set.seed(1)
-n.sim = 1e6
+n.sim = 1e5
 cell  = sample(1:15, n.sim, replace = TRUE, prob = as.vector(t(P.xy)))   # cells ordered row by row
 X.sim = rep(x.vals, each = 5)[cell]
 Y.sim = rep(y.vals, times = 3)[cell]
-sim_df = data.frame( Moment     = c("E(Y)", "Var(Y)", "E(Y|X=8)", "Var(Y|X=8)", "Corr(X,Y)"),
-                     Population = c(E.y, Var.y, E.y_x[3], Var.y_x[3], Corr.xy),
-                     Simulation = c(mean(Y.sim), mean((Y.sim-mean(Y.sim))^2), mean(Y.sim[X.sim==8]),
+sim_df = data.frame(Moment     = c("E(Y)", "Var(Y)", "E(Y|X=8)", "Var(Y|X=8)", "Corr(X,Y)"),
+                    Population = c(E.y, Var.y, E.y_x[3], Var.y_x[3], Corr.xy),
+                    Simulation = c(mean(Y.sim), mean((Y.sim-mean(Y.sim))^2), mean(Y.sim[X.sim==8]),
                                     mean((Y.sim[X.sim==8]-mean(Y.sim[X.sim==8]))^2), cor(X.sim, Y.sim)) )
 print(format(sim_df, digits = 6, nsmall = 4), row.names = FALSE)
 
@@ -104,7 +104,7 @@ op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mar = c(5, 5, 2, 2),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
+
 ages = as.numeric(names(E.ahe_age))
 plot( ages, E.ahe_age, type = "b", pch = 16, lwd = 2, col = "steelblue", ylim = c(14, 28),
       xlab = "Age", ylab = "E(AHE | Age)", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -112,7 +112,7 @@ lines(ages, E.ahe_age_fem[,"Male"],   type = "b", pch = 15, lwd = 2, col = "red3
 lines(ages, E.ahe_age_fem[,"Female"], type = "b", pch = 17, lwd = 2, col = "green4", lty = 2)
 set_axis_ticks(at1 = ages, tcl = .15, cex = fnt-.1)
 legend("topleft", legend = c("All", "Male", "Female"), col = c("steelblue", "red3", "green4"),
-       pch = c(16, 15, 17), lty = c(1, 2, 2), lwd = 2, bty = "o", bg = "white", cex = fnt-.2)
+        pch = c(16, 15, 17), lty = c(1, 2, 2), lwd = 2, bty = "o", bg = "white", cex = fnt-.2)
 if (print2pdf == 1){ par(op);dev.off() }
 
 # %% Question 3) MOMENTS OF DAILY STOCK RETURNS: NYSE Composite Index 1990-2005 (AER data NYSESW)
@@ -123,9 +123,9 @@ n = length(r)
 mom = function(x, k) mean( (x - mean(x))^k )
 skew = function(x) mom(x,3)/mom(x,2)^(3/2)
 kurt = function(x) mom(x,4)/mom(x,2)^2
-ret_df = data.frame( Statistic = c("Mean (% per day)", "Std.Dev (% per day)", "Skewness", "Kurtosis",
-                                   "Excess Kurtosis", "Mean (% p.a., x252)", "Volatility (% p.a., x sqrt(252))"),
-                     Value     = c(mean(r), sqrt(mom(r,2)), skew(r), kurt(r), kurt(r)-3, 252*mean(r), sqrt(252)*sqrt(mom(r,2))) )
+ret_df = data.frame( Statistic = c( "Mean (% per day)", "Std.Dev (% per day)", "Skewness", "Kurtosis",
+                                    "Excess Kurtosis", "Mean (% p.a., x252)", "Volatility (% p.a., x sqrt(252))"),
+                      Value    = c(mean(r), sqrt(mom(r,2)), skew(r), kurt(r), kurt(r)-3, 252*mean(r), sqrt(252)*sqrt(mom(r,2))) )
 cat(sprintf(' Number of daily returns: %d\n', n))
 print(format(ret_df, digits = 4, nsmall = 4), row.names = FALSE)
 
@@ -146,17 +146,17 @@ bern_df = data.frame( Moment  = c("Mean", "Variance", "Skewness", "Kurtosis"),
 print(format(bern_df, digits = 6, nsmall = 6), row.names = FALSE)
 
 # PLOT HISTOGRAM OF RETURNS WITH NORMAL DENSITY
-if (print2pdf == 1){ pdf( paste0(path2graphics, "Lab-01-NYSE Returns.pdf"), width = 9, height = 5 ) }
+if (print2pdf == 1){ pdf( paste0(path2graphics, "Lab-01-NYSE Returns.pdf"), width = 9, height = 6 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 2, 2), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
+
 hist( r, breaks = 120, freq = FALSE, col = "steelblue", border = "white", main = "", xlim = c(-5, 5),
       xlab = "Daily log return (%)", ylab = "Density", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 xgrd = seq(-5, 5, length.out = 500)
 lines(xgrd, dnorm(xgrd, mean(r), sqrt(mom(r,2))), col = "red3", lwd = 2)
 set_axis_ticks(tcl = .15, cex = fnt-.1)
 legend("topright", legend = c("NYSE daily returns", "Normal with same mean and variance"),
-       col = c("steelblue", "red3"), lwd = c(8, 2), bty = "o", bg = "white", cex = fnt-.2)
+        col = c("steelblue", "red3"), lwd = c(4, 2), bty = "o", bg = "white", cex = fnt-.31)
 if (print2pdf == 1){ par(op);dev.off() }
 
 #EOF

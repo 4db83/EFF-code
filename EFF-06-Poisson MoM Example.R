@@ -57,15 +57,13 @@ print( format(results_df, digits = 4, nsmall = 4), row.names = FALSE )
 # %% PLOT THE SAMPLING DISTRIBUTIONS OF THE TWO MOM ESTIMATORS
 fnt = 1.9 # font size
 if (print2pdf == 1){fnt = 1.45; pdf( paste0(path2graphics, pdf_name), width = 11.1, height = 6 ) }
-use_dark_plots()
+
 op = par( mfrow = c(1, 2), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),    # axis title, labels, line, position of y,x labels to axis
           mar = c(5, 4, 1, 0),    # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),    # outer margins for overall spacing
           tcl = -0.25)            # shorter tick marks
 
-
-if (print2pdf == 1) {use_dark_plots("white") }
 lambda.hat = cbind( lambda.hat1,lambda.hat2 )
 colnames(lambda.hat) = c( paste0("E(X)|Lambda=",lambda,",n=",n), 
                           paste0("E(Z)|Lambda=",lambda,",n=",n) )

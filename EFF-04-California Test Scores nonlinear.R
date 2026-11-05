@@ -38,8 +38,7 @@ op = par(family = "serif", las = 1,
     oma = c(1, 1, 1, 1),   # outer margins for overall spacing
     tcl = -0.25            # shorter tick marks
 )
-use_dark_plots()
-if (print2pdf == 1) {use_dark_plots("white") }
+
 plot( CASchools$avginc, CASchools$testscr, 
       xlim = c(2,58), 
       ylim = c(602,737),
@@ -86,7 +85,7 @@ prnt.testscr_avginc2  = print_lm_results(lm.testscr_avginc2)
 prnt.testscr_avginc3  = print_lm_results(lm.testscr_avginc3)
 
 # %% PLOT THE SCATTER WITH THE LINEAR, QUADRATIC AND CUBIC FITS
-fnt = 1.8 # font size
+fnt = 1.9 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 10, height = 7 ) }
 op = par(family = "serif", las = 1,
     mgp = c(3.5, .5, 0),   # axis title, labels, line, position of y,x labels to axis
@@ -94,8 +93,7 @@ op = par(family = "serif", las = 1,
     oma = c(1, 1, 1, 1),   # outer margins for overall spacing
     tcl = -0.25            # shorter tick marks
 )
-# use_dark_plots("white")
-# use_dark_plots("black")
+
 plot( CASchools$avginc, CASchools$testscr, 
       xlim = c(2,58), 
       ylim = c(602,737),

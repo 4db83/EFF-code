@@ -35,9 +35,6 @@ op = par( mfrow = c(1, 1), family = "serif", las = 1,
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
 
-# use_dark_plots()
-if (print2pdf == 1) {use_dark_plots("white") }
-
 plot( subset(CASchools$str,    CASchools$Hi_EL == 1), 
       subset(CASchools$testscr,CASchools$Hi_EL == 1), 
       xlim = c(10.5,29.5), 

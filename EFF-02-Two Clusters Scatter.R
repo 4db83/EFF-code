@@ -13,7 +13,7 @@ invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), sou
 print2pdf = 0
 pdf_name  = "EFF-02-Two Clusters Scatter.pdf"
 path2graphics = "../_tex.source.files/graphics/"
-# path2graphics = ""
+path2graphics = ""
 
 # IN-FILE FUNCTION DEFINITIONS
 # legend text: fitted line and R^2 of each regression

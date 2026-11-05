@@ -60,7 +60,7 @@ p.anscombe = ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
                 parse = TRUE,
                 ) +
   scale_y_continuous( name = "Y (dependent variable)", 
-                      sec.axis = sec_axis( trans=~.*1)  ) +
+                      sec.axis = sec_axis( transform =~.*1)  ) +
   scale_x_continuous( name = "X (independent variable)" ) +
   coord_cartesian( ylim = c(2.5, 12.5), xlim = c(5, 20) ) +
   grids( linetype = "dashed" ) +
