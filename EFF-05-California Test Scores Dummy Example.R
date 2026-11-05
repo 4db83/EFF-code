@@ -1,31 +1,34 @@
-# %% CLEAR SCREEN AND WORKSPACE
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
 rm(list = ls()); cat("\014"); gc(); 
-# SET DEFAULTS: display options, font and y axis label rotation
+# set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
-# INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD/INSTALL: other required packages
+# load/install: other required packages
 pacman::p_load(dplyr,readxl,sandwich)
-# LOAD HELPER FUNCTIONS STORED IN functions_path
+# load helper functions stored in functions_path
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
+# set to 1 to print to pdf instead of screen
+print2pdf = 0
+pdf_name  = "California Test Scores Dummy Example.pdf"
+path2graphics = "../_tex.source.files/graphics/"
+path2graphics = ""
 
-# MAIN SCRIPT: starts here 
+# IN-FILE FUNCTION DEFINITIONS
+# none
+
+# %% SCRIPT STARTS HERE
 CASchools = read_xlsx("./data/caschool.xlsx")           # read the data from .XLSX file in directory ./data
 CASchools$Hi_EL = as.numeric(CASchools$el_pct >= 10)    # create dummy variable that is equal to 1 when el_pct >= 10% 
 
-# WITH INTERACTION DUMMIES
+# %% REGRESSION WITH THE Hi_EL DUMMY AND ITS INTERACTION WITH STR
 lm.testscr_str_HiEL = lm(testscr ~ str + str*Hi_EL+ Hi_EL, data = CASchools)
 prnt.testscr_str_HiEL = print_lm_results(lm.testscr_str_HiEL)
-print2pdf = 0
-path2graphics = "../source.tex.files/graphics/"
-path2graphics = ""
 
-if (print2pdf == 1){ pdf( paste0(path2graphics, "California Test Scores Dummy Example.pdf"),
-                          width = 11.1, height = 7.6, onefile = TRUE ) }
-
-# %%
-fnt = 1.45 # font size
+# %% PLOT THE SCATTER WITH THE FITTED LINES FOR Hi_EL = 1 AND Hi_EL = 0
+fnt = 1.9 # font size
+if (print2pdf == 1){fnt = 1.45; pdf( paste0(path2graphics, pdf_name), width = 11.1, height = 7.6 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
           mar = c(5, 4, 5, 3),   # bottom, left, top, right per plot, position of the subplots inside the total plot area

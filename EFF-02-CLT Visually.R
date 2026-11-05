@@ -1,19 +1,25 @@
-# %% CLEAR SCREEN AND WORKSPACE
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
 rm(list = ls()); cat("\014"); gc(); 
-# SET DEFAULTS: display options, font and y axis label rotation
+# set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
-# INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD REQUIRED PACKAGES 
+# load/install: other required packages
 pacman::p_load(tictoc, matrixStats, ggplot2)
-# LOAD HELPER FUNCTIONS STORED IN functions_path
+# load helper functions stored in functions_path
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
-print2pdf = 1
+print2pdf = 0
+pdf_name  = "EFF-02-CLT Visually.pdf"
 path2graphics = "../_tex.source.files/graphics/"
-# path2graphics = ""
+path2graphics = ""
 
+# IN-FILE FUNCTION DEFINITIONS
+# Draw from Bernoulli RV with success probablity p
+rbernoulli = function(n_rows, n_cols, p) { matrix( as.integer( runif(n_rows*n_cols) < p ), nrow = n_rows, ncol = n_cols) }
+
+# %% SCRIPT STARTS HERE
 # set the number of repetitions and the sample sizes
 N.reps = 1e5
 sample.sizes = c(2, 5, 25, 100)
@@ -24,8 +30,9 @@ N = length(sample.sizes)
 set.seed(1)
 p = 0.78  # success probability
 
-Bernoulli.Y  = matrix( as.integer( runif(N.reps*N.size) < p ), nrow = N.reps, ncol = N.size)
-# Bernoulli.Y  = as.integer(U.rvs < p)
+# draw from Bernoulli RV of 
+# Bernoulli.Y  = matrix( as.integer( runif(N.reps*N.size) < p ), nrow = N.reps, ncol = N.size)
+Bernoulli.Y = rbernoulli(N.reps, N.size, p)
 
 # make storage
 p.hat = matrix( data = NA, nrow = N.reps, ncol = N )
@@ -37,9 +44,9 @@ for (n in 1:N){
 }
 toc()
 
-# %% now do the plotting of the histogram 
+# %% PLOT THE HISTOGRAMS OF THE SAMPLE PROPORTION
 fnt = 1.85 		# font size
-if (print2pdf == 1){fnt = 1.4; pdf( paste0(path2graphics, "EFF-02-CLT Visually.pdf"), width = 10, height = 7 ) }
+if (print2pdf == 1){fnt = 1.4; pdf( paste0(path2graphics, pdf_name), width = 10, height = 7 ) }
 # subdivide the plot panel into a 2-by-2 array
 op = par(	mfrow = c(2, 2), family = "serif", las = 1, 
           mgp 	= c(2.9, .5, 0),   # axis title, labels, line, position of y,x labels to axis
@@ -105,3 +112,4 @@ if (print2pdf == 1){ par(op); dev.off() }
 
 
 
+  

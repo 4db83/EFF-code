@@ -1,23 +1,27 @@
-# %% CLEAR SCREEN AND WORKSPACE
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
 rm(list = ls()); cat("\014"); gc(); 
-# SET DEFAULTS: display options, font and y axis label rotation
+# set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
-# INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD/INSTALL: other required packages
+# load/install: other required packages
 pacman::p_load(dplyr,matrixStats)
-# LOAD HELPER FUNCTIONS STORED IN functions_path
+# load helper functions stored in functions_path
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
 print2pdf = 0
-path2graphics = "../source.tex.files/graphics/"
-path2graphics = ""
 pdf_name  = "EFF-06-Poisson MoM Example.pdf"
-if (print2pdf == 1){ pdf( paste0(path2graphics, pdf_name), onefile = TRUE, 
-                          width = 11.1, height = 6 ) }
+path2graphics = "../_tex.source.files/graphics/"
+path2graphics = ""
 
-# %% MAIN SCRIPT: starts here 
+# IN-FILE FUNCTION DEFINITIONS
+# none
+
+# %% SCRIPT STARTS HERE
+# two MoM estimators of the Poisson parameter lambda: from E(X) = lambda and from E(X^2) = lambda(1 + lambda)
+
+# %% SIMULATE THE TWO MOM ESTIMATORS
 set.seed(1)
 yLims = c(0,.15)
 xLims = c(-0,20)
@@ -50,8 +54,9 @@ results_df <- data.frame(
 cat("Variance of the two MoM Estimators \n")
 print( format(results_df, digits = 4, nsmall = 4), row.names = FALSE )
 
-# %% PLOT FIT AND SCATTER 
-fnt = 1.45 # font size
+# %% PLOT THE SAMPLING DISTRIBUTIONS OF THE TWO MOM ESTIMATORS
+fnt = 1.9 # font size
+if (print2pdf == 1){fnt = 1.45; pdf( paste0(path2graphics, pdf_name), width = 11.1, height = 6 ) }
 use_dark_plots()
 op = par( mfrow = c(1, 2), family = "serif", las = 1, 
           mgp = c(3.0, .5, 0),    # axis title, labels, line, position of y,x labels to axis

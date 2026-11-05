@@ -1,12 +1,24 @@
-# %% CLEAR SCREEN AND WORKSPACE
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
 rm(list = ls()); cat("\014"); gc(); 
-# SET DEFAULTS: display options, font and y axis label rotation
+# set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
-# INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD REQUIRED PACKAGES 
+# load/install: other required packages
 pacman::p_load(tidyverse,scales,stats,ggpmisc,ggpubr,ggfortify)
+# load helper functions stored in functions_path
+functions_path  = c("./helper_functions/")
+invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
+# set to 1 to print to pdf instead of screen
+print2pdf = 0
+pdf_name  = "EFF-02-Anscombe73.pdf"
+path2graphics = "../_tex.source.files/graphics/"
+path2graphics = ""
 
+# IN-FILE FUNCTION DEFINITIONS
+# none
+
+# %% SCRIPT STARTS HERE
 # check the loaded data
 head(anscombe)
 
@@ -20,10 +32,11 @@ tidy_anscombe$set = paste0("Data set ", tidy_anscombe$set)
 tidy_anscombe     = arrange(tidy_anscombe, set, x)
 # print(tidy_anscombe,n=100)
 
-# %% PLOTS
-fnt = 15
+# %% PLOT THE FOUR DATA SETS WITH THEIR REGRESSION LINES
+fnt = 15 # font size (in points for ggplot)
+if (print2pdf == 1){fnt = 12; pdf( paste0(path2graphics, pdf_name), width = 10, height = 7 ) }
 my.formula <- y ~ x
-ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
+p.anscombe = ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
   facet_wrap(~set, scales='free', strip.position="bottom") +
   theme(axis.text.x = element_text(size = fnt, hjust  = 0.58, vjust = 0.5 , colour = "black"),
         axis.text.y = element_text(size = fnt, colour = "black"),
@@ -42,7 +55,7 @@ ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
               formula = my.formula ) +
   stat_poly_eq(	formula = my.formula,
                 eq.with.lhs = c("hat(Y)[i]~`=`~ "),
-                eq.x.rhs = "~X[i]", family = "serif", size = 4.5, fontface = "italic", 
+                eq.x.rhs = "~X[i]", family = "serif", size = 0.3*fnt, fontface = "italic",
                 aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "*\",\"~~~")),
                 parse = TRUE,
                 ) +
@@ -52,6 +65,8 @@ ggplot(tidy_anscombe, aes(x = x, y = y)) + theme_bw() +
   coord_cartesian( ylim = c(2.5, 12.5), xlim = c(5, 20) ) +
   grids( linetype = "dashed" ) +
   geom_point( size=2.5 )
+print(p.anscombe)
+if (print2pdf == 1){ dev.off() }
 
 
 

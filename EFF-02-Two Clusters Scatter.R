@@ -1,22 +1,34 @@
-# %% CLEAR SCREEN AND WORKSPACE
-rm(list = ls()); cat("\014"); gc();
-# SET DEFAULTS: display options, font and y axis label rotation
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
+rm(list = ls()); cat("\014"); gc(); 
+# set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
-# INSTALL PACMAN: if not installed (note: may need to disable windows firewall for packages to install)
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD/INSTALL: other required packages
+# load/install: other required packages
 pacman::p_load(latex2exp)
-# LOAD HELPER FUNCTIONS STORED IN functions_path
+# load helper functions stored in functions_path
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
-print2pdf = 1
+print2pdf = 0
+pdf_name  = "EFF-02-Two Clusters Scatter.pdf"
 path2graphics = "../_tex.source.files/graphics/"
 # path2graphics = ""
 
-# %% TWO CLUSTERS (Lecture 2): a scatter plot can show a strong relation between Y and X in the pooled data
+# IN-FILE FUNCTION DEFINITIONS
+# legend text: fitted line and R^2 of each regression
+fit_label = function(name, fit) {
+  cf = coef(fit); r2 = summary(fit)$r.squared
+  bquote(.(name)*":" ~~ hat(Y) == .(sprintf("%.2f", cf[1])) ~ .(ifelse(cf[2] < 0, "-", "+")) ~
+           .(sprintf("%.2f", abs(cf[2])))*X * "," ~~ R^2 == .(sprintf("%.2f", r2)))
+}
+
+# %% SCRIPT STARTS HERE
+# two clusters (Lecture 2): a scatter plot can show a strong relation between Y and X in the pooled data
 # even though there is no relation between Y and X within either cluster. The pooled slope only picks up
 # the difference between the two cluster means (an omitted group variable).
+
+# %% SIMULATE THE TWO CLUSTERS AND RUN THE REGRESSIONS
 n1 = 1450; n2 = 1550        # number of observations in cluster 1 (lower left) and cluster 2 (upper right)
 b.within = 0                # slope of Y on X inside each cluster; try -0.5 to make the pooled and within slopes have opposite signs
 set.seed(1234)
@@ -49,14 +61,8 @@ col.2    = "#E07B39"         # cluster 2 points
 col.fit1 = "navy"              # cluster 1 regression line
 col.fit2 = "red3"              # cluster 2 regression line
 col.pool = "black"             # pooled regression line
-# legend text: fitted line and R^2 of each regression
-fit_label = function(name, fit) {
-  cf = coef(fit); r2 = summary(fit)$r.squared
-  bquote(.(name)*":" ~~ hat(Y) == .(sprintf("%.2f", cf[1])) ~ .(ifelse(cf[2] < 0, "-", "+")) ~
-           .(sprintf("%.2f", abs(cf[2])))*X * "," ~~ R^2 == .(sprintf("%.2f", r2)))
-}
-if (print2pdf == 1){ pdf( paste0(path2graphics, "EFF-02-Two Clusters Scatter.pdf"), width = 10, height = 6.2 ) }
-fnt = 1.35 # font size
+fnt = 1.8 # font size
+if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name), width = 10, height = 6.2 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0),   # axis title, labels, line, position of y,x labels to axis
           mar = c(3.5, 4, 1, 4), # bottom, left, top, right per plot, position of the subplots inside the total plot area

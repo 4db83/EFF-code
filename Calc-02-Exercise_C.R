@@ -1,16 +1,27 @@
-# %% PREAMBLE: clear screen/workspace 
-cat("\014"); rm(list = ls()); gc();
-# SET DEFAULTS: display options, font and y axis label rotation
-options(digits = 12); options(scipen = 999);  options(max.print=10000)
-# INSTALL PACMAN: if not installed (note: may neeD:\_teaching\_current.teaching\_SU.EFF\code-EFF\helper_functions\print_results.Rd to disable windows firewall for packages to install)
+# %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
+rm(list = ls()); cat("\014"); gc(); 
+# set defaults: display options, font and y axis label rotation
+par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
+# install pacman: if not installed 
 if(!"pacman" %in% installed.packages()){install.packages("pacman")}
-# LOAD/INSTALL: other required packages
+# load/install: other required packages
 pacman::p_load(dplyr,readxl,sandwich)
-# LOAD HELPER FUNCTIONS STORED IN functions_path
+# load helper functions stored in functions_path
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
+# set to 1 to print to pdf instead of screen
+print2pdf = 0
+pdf_name  = ""   # this script makes no plots
+path2graphics = "../_tex.source.files/graphics/"
+path2graphics = ""
 
-# %% Question 1) a to c.
+# IN-FILE FUNCTION DEFINITIONS
+# none
+
+# %% SCRIPT STARTS HERE
+# Calculation Exercises 2: percentage change and log change of sales
+
+# %% QUESTION 1) PERCENTAGE CHANGE VERSUS LOG CHANGE (parts a. to c.)
 Sales_2013 = 196
 Sales_2014 = 500
 
