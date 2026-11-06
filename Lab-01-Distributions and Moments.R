@@ -1,5 +1,5 @@
 # %% CLEAR SCREEN AND WORKSPACE
-rm(list = ls()); cat("\014"); gc();
+rm(list = ls()); gc(); cat("\014"); 
 # SET DEFAULTS: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
 # INSTALL PACMAN: if not installed (note: may need to disable windows firewall for packages to install)
