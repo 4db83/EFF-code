@@ -14,7 +14,8 @@ print2pdf = 0
 path2graphics = "../_tex.source.files/graphics/"
 # path2graphics = ""
 
-# %% Question 1) JOINT, MARGINAL AND CONDITIONAL DISTRIBUTIONS (table from Calc-1, Question 6)
+# %% SCRIPT STARTS HERE: one cell for each question
+# Question 1) JOINT, MARGINAL AND CONDITIONAL DISTRIBUTIONS (table from Calc-1, Question 6)
 # a. enter the joint PMF: rows are X = 1,5,8, columns are Y = 14,22,30,40,65
 x.vals = c(1, 5, 8)
 y.vals = c(14, 22, 30, 40, 65)
