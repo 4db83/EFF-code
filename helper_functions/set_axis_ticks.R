@@ -1,5 +1,5 @@
-set_axis_ticks <- function( at1 = NULL,        # sequence of values
-                            at2 = NULL,        # sequence of values
+set_axis_ticks <- function( at1 = NULL,       # sequence of values
+                            at2 = NULL,       # sequence of values
                             tcl = .25,        # ticksize 
                             cex = 1.35,       # font size
                             labels = TRUE,
@@ -21,11 +21,11 @@ set_axis_ticks <- function( at1 = NULL,        # sequence of values
 
 }
 
-set_yaxis_ticks <- function( side = 1,         # which axis, 1 for y, 2 for x
-                             at = NULL,        # sequence of values
-                             tcl = .25,        # ticksize 
-                             cex = 1.35,       # font size
-                             labels = TRUE) {
+set_yaxis_ticks <- function(side = 1,         # which axis, 1 for y, 2 for x
+                            at = NULL,        # sequence of values
+                            tcl = .25,        # ticksize 
+                            cex = 1.35,       # font size
+                            labels = TRUE) {
   
   if (is.null(at)) { at <- axTicks(side) }
 
@@ -37,11 +37,11 @@ set_yaxis_ticks <- function( side = 1,         # which axis, 1 for y, 2 for x
 }
 
 
-set_xaxis_ticks <- function( side = 2,         # which axis, 1 for y, 2 for x
-                             at = NULL,        # sequence of values
-                             tcl = .25,        # ticksize 
-                             cex = 1.35,       # font size
-                             labels = TRUE) {
+set_xaxis_ticks <- function(side = 2,         # which axis, 1 for y, 2 for x
+                            at = NULL,        # sequence of values
+                            tcl = .25,        # ticksize 
+                            cex = 1.35,       # font size
+                            labels = TRUE) {
   
   if (is.null(at)) { at <- axTicks(side) }
 

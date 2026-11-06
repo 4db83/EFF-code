@@ -11,8 +11,8 @@ functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
 print2pdf = 1
-path2graphics = "../source.tex.files/graphics/"
-path2graphics = ""
+path2graphics = "../_tex.source.files/graphics/"
+# path2graphics = ""
 
 # %% Question 1) JOINT, MARGINAL AND CONDITIONAL DISTRIBUTIONS (table from Calc-1, Question 6)
 # a. enter the joint PMF: rows are X = 1,5,8, columns are Y = 14,22,30,40,65
@@ -124,8 +124,8 @@ mom = function(x, k) mean( (x - mean(x))^k )
 skew = function(x) mom(x,3)/mom(x,2)^(3/2)
 kurt = function(x) mom(x,4)/mom(x,2)^2
 ret_df = data.frame( Statistic = c( "Mean (% per day)", "Std.Dev (% per day)", "Skewness", "Kurtosis",
-                                    "Excess Kurtosis", "Mean (% p.a., x252)", "Volatility (% p.a., x sqrt(252))"),
-                      Value    = c(mean(r), sqrt(mom(r,2)), skew(r), kurt(r), kurt(r)-3, 252*mean(r), sqrt(252)*sqrt(mom(r,2))) )
+                                    "Excess Kurtosis", "Mean (% p.a., x252)", "Volatility (% p.a., x sqrt(252))","Min","Max"),
+                      Value    = c( mean(r), sqrt(mom(r,2)), skew(r), kurt(r), kurt(r)-3, 252*mean(r), sqrt(252)*sqrt(mom(r,2)),min(r),max(r)) )
 cat(sprintf(' Number of daily returns: %d\n', n))
 print(format(ret_df, digits = 4, nsmall = 4), row.names = FALSE)
 
@@ -146,17 +146,18 @@ bern_df = data.frame( Moment  = c("Mean", "Variance", "Skewness", "Kurtosis"),
 print(format(bern_df, digits = 6, nsmall = 6), row.names = FALSE)
 
 # PLOT HISTOGRAM OF RETURNS WITH NORMAL DENSITY
-if (print2pdf == 1){ pdf( paste0(path2graphics, "Lab-01-NYSE Returns.pdf"), width = 9, height = 6 ) }
+if (print2pdf == 1){ pdf( paste0(path2graphics, "Lab-01-NYSE Returns.pdf"), width = 10, height = 6 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 2, 2), oma = c(1, 1, 1, 1), tcl = -0.25)
 
-hist( r, breaks = 120, freq = FALSE, col = "steelblue", border = "white", main = "", xlim = c(-5, 5),
+hist( r, breaks = 80, freq = FALSE, col = "steelblue", border = "white", main = "", xlim = c(-5.0, 5.0), ylim = c(0,.7),
       xlab = "Daily log return (%)", ylab = "Density", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 xgrd = seq(-5, 5, length.out = 500)
-lines(xgrd, dnorm(xgrd, mean(r), sqrt(mom(r,2))), col = "red3", lwd = 2)
-set_axis_ticks(tcl = .15, cex = fnt-.1)
+# axis(side = 1, at = seq(-5, 5, by = 1), cex.axis = fnt-.1)
+lines(xgrd, dnorm(xgrd, mean(r), sqrt(mom(r,2))), col = "red3", lwd = 1.5)
+set_axis_ticks(tcl = .15, cex = fnt-.1, at1 = seq(-5, 5, by = 1))
 legend("topright", legend = c("NYSE daily returns", "Normal with same mean and variance"),
-        col = c("steelblue", "red3"), lwd = c(4, 2), bty = "o", bg = "white", cex = fnt-.31)
+        col = c("steelblue", "red3"), lwd = c(3, 2), bty = "o", bg = "white", cex = fnt-.21)
 if (print2pdf == 1){ par(op);dev.off() }
 
 #EOF
