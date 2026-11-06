@@ -1,5 +1,5 @@
 # %% HEADER: CLEAR SCREEN, WORKSPACE, LOAD PACKAGES, SET DEFAULTS
-rm(list = ls()); cat("\014"); gc(); 
+rm(list = ls()); gc(); cat("\014"); 
 # set defaults: display options, font and y axis label rotation
 par(family = "serif", las = 1); options(digits = 8); options(scipen = 999);  options(max.print=1e4);
 # install pacman: if not installed 
