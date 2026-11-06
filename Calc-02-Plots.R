@@ -37,10 +37,10 @@ df <- data.frame(x = x,
 
 # %% FIRST PANEL: REGRESSION FUNCTIONS a) TO c) (GGPLOT)
 p1 <- ggplot(df, aes(x = x)) +
-  geom_line(aes(y = y_a, color = "a"), size = 0.7) +
-  geom_line(aes(y = y_b, color = "b"), size = 0.7) +
-  geom_line(aes(y = y_c_z1, color = "c_z1"), size = 0.7) +
-  geom_line(aes(y = y_c_z0, color = "c_z0"), linetype = "dashed", size = 0.7) +
+  geom_line(aes(y = y_a, color = "a"), linewidth = 0.7) +
+  geom_line(aes(y = y_b, color = "b"), linewidth = 0.7) +
+  geom_line(aes(y = y_c_z1, color = "c_z1"), linewidth = 0.7) +
+  geom_line(aes(y = y_c_z0, color = "c_z0"), linetype = "dashed", linewidth = 0.7) +
   geom_hline(yintercept = 0, linetype = "solid", alpha = 0.5) +
   scale_color_manual(
     name = NULL,
@@ -57,56 +57,6 @@ p1 <- ggplot(df, aes(x = x)) +
   theme_minimal() +
   theme(legend.position = "right",   # "best" is not a ggplot option and drops the legend
         legend.text.align = 0)
-
-# # Second subplot -----
-# p2 <- ggplot(df, aes(x = x)) +
-#   geom_line(aes(y = y_d_z1, color = "d_z1"), size = 0.7) +
-#   geom_line(aes(y = y_d_z0, color = "d_z0"), size = 0.7) +
-#   scale_color_manual(
-#     name = NULL,
-#     values = c(d_z1 = clr[1], d_z0 = clr[2]),
-#     labels = c(
-#       d_z1 = expression(hat(Y) == 2 + 3 * ln(X) + 4 * Z - Z %*% ln(X)~","~Z == 1),
-#       d_z0 = expression(hat(Y) == 2 + 3 * ln(X) + 4 * Z - Z %*% ln(X)~","~Z == 0)
-#     )
-#   ) +
-#   labs(x = expression(italic(X)), y = expression(hat(italic(Y))) +
-#   theme_minimal()
-# print(p2)
-
-# Second subplot -----
-# p2 <- ggplot(df, aes(x = x)) +
-#   geom_line(aes(y = y_d_z1, color = "d_z1"), size = 0.7) +
-#   geom_line(aes(y = y_d_z0, color = "d_z0"), size = 0.7) +
-#   scale_color_manual(
-#     name = NULL,
-#     values = c(d_z1 = clr[1], d_z0 = clr[2]),
-#     labels = c(
-#       d_z1 = expression(hat(Y) == 2 + 3 * ln(X) + 4 * Z - Z %*% ln(X)~","~Z == 1),
-#       d_z0 = expression(hat(Y) == 2 + 3 * ln(X) + 4 * Z - Z %*% ln(X)~","~Z == 0)
-#     )
-#   ) +
-#   labs(
-#     x = expression(italic(X)),
-#     y = expression(hat(italic(Y)))
-#   ) +
-#   theme_minimal() +
-#   theme(
-#     legend.position = c(0.05, 0.95),                # top-left
-#     legend.justification = c("left", "top"),
-#     legend.text.align = 0, 
-#     legend.background = element_rect(             # box around legend
-#       fill = "white",
-#       color = "black",                            # border color
-#       linewidth = 0.5
-#     ),
-#     legend.text.align = 0,
-#     panel.border = element_rect(                  # box around the plot panel
-#       color = "black",
-#       fill = NA,
-#       linewidth = 0.5
-#     )
-#   )
 
 # %% SECOND PANEL: REGRESSION FUNCTION d) IN BASE R
 x <- seq(5, 100, length.out = 1000)
@@ -149,7 +99,7 @@ if (print2pdf == 1){ par(op); dev.off() }
 
 # %% THIRD PANEL: REGRESSION FUNCTION e) (GGPLOT)
 p3 <- ggplot(df, aes(x = x)) +
-  geom_line(aes(y = y_e, color = "e"), size = 0.7) +
+  geom_line(aes(y = y_e, color = "e"), linewidth = 0.7) +
   scale_color_manual(
     name = NULL,
     values = c(e = clr[3]),
