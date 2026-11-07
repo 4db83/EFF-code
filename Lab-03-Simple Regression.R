@@ -34,8 +34,8 @@ cat(sprintf(' lm()   : b0 = %.6f  b1 = %.6f\n', coef(lm.testscr_str)[1], coef(lm
 Y.hat = b0.hat + b1.hat*X
 u.hat = Y - Y.hat
 TSS = sum( (Y - mean(Y))^2 );  ESS = sum( (Y.hat - mean(Y))^2 );  RSS = sum( u.hat^2 )
-facts_df = data.frame( Fact  = c("mean(u.hat)", "sum(X*u.hat)", "mean(Y.hat) - mean(Y)", "sum(Y.hat*u.hat)", "TSS - ESS - RSS"),
-                       Value = c(mean(u.hat), sum(X*u.hat), mean(Y.hat) - mean(Y), sum(Y.hat*u.hat), TSS - ESS - RSS) )
+facts_df = data.frame(Fact  = c("mean(u.hat)", "sum(X*u.hat)", "mean(Y.hat) - mean(Y)", "sum(Y.hat*u.hat)", "TSS - ESS - RSS"),
+                      Value = c(mean(u.hat), sum(X*u.hat), mean(Y.hat) - mean(Y), sum(Y.hat*u.hat), TSS - ESS - RSS) )
 print(format(facts_df, digits = 4), row.names = FALSE)
 
 # c. measures of fit
@@ -88,8 +88,8 @@ xgrd = seq(0, 2.05, length.out = 100)
 lines(xgrd, predict(lm.growth_all, data.frame(tradeshare = xgrd)), col = "red3",  lwd = 2)
 lines(xgrd, predict(lm.growth_noM, data.frame(tradeshare = xgrd)), col = "green4", lwd = 2, lty = 2)
 set_axis_ticks(tcl = .15, cex = fnt-.1)
-legend("bottomright", legend = c("OLS fit, all countries", "OLS fit, excluding Malta"), col = c("red3", "green4"),
-       lwd = 2, lty = c(1, 2), bty = "o", bg = "white", cex = fnt-.2)
+legend( "bottomright", legend = c("OLS fit, all countries", "OLS fit, excluding Malta"), col = c("red3", "green4"),
+        lwd = 2, lty = c(1, 2), bty = "o", bg = "white", cex = fnt-.2)
 if (print2pdf == 1){ par(op);dev.off() }
 
 # %% QUESTION 3) CEO SALARY AND RETURN ON EQUITY
@@ -140,7 +140,8 @@ op = par( mfrow = c(1, 1), family = "serif", las = 1,
 
 h1 = hist(b1.store[,1], breaks = 50, plot = FALSE)
 h2 = hist(b1.store[,2], breaks = 50, plot = FALSE)
-plot( h1, freq = FALSE, col = rgb(.27,.51,.71,.6), border = "white", main = "", xlim = c(0.8, 3.2), ylim = c(0, 2.9),
+plot( h1, freq = FALSE, col = rgb(.27,.51,.71,.6), border = "white", main = "", 
+      xlim = c(0.8, 3.2), ylim = c(0, max(h2$density)*1.2),
       xlab = expression("OLS estimate " * hat(beta)[1] ~ "(true value 2)"), ylab = "Density",
       cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 plot(h2, freq = FALSE, col = rgb(.80,.10,.10,.4), border = "white", add = TRUE)
@@ -148,8 +149,10 @@ bgrd = seq(0.8, 3.2, length.out = 400)
 lines(bgrd, dnorm(bgrd, 2, mc_df$SD.theory[1]), col = "steelblue", lwd = 2)
 lines(bgrd, dnorm(bgrd, 2, mc_df$SD.theory[2]), col = "red3", lwd = 2)
 set_axis_ticks(tcl = .15, cex = fnt-.1)
-legend("topright", legend = c("X ~ U[0,10]", "X ~ U[0,20]"), fill = c(rgb(.27,.51,.71,.6), rgb(.80,.10,.10,.4)),
-       border = "white", bty = "o", bg = "white", cex = fnt-.2)
+legend("topright", legend = paste0("X ~ U[0,", c(10, 20), "]"), 
+        fill = c( rgb(.27,.51,.71,.6), 
+                  rgb(.80,.10,.10,.4)),
+        border = "white", bty = "o", bg = "white", cex = fnt-.2)
 if (print2pdf == 1){ par(op);dev.off() }
 
 #EOF
