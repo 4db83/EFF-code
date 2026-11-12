@@ -10,7 +10,7 @@ pacman::p_load(tictoc, matrixStats, ggplot2)
 functions_path  = c("./helper_functions/")
 invisible(lapply( paste0(functions_path, list.files(functions_path, "*.R")), source ))
 # set to 1 to print to pdf instead of screen
-print2pdf = 1
+print2pdf = 0
 pdf_name  = "Calc-01-CLT Visually.pdf"
 path2graphics = "../_tex.source.files/graphics/"
 # path2graphics = ""
