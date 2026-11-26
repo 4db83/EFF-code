@@ -99,7 +99,6 @@ op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mar = c(5, 5, 1, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 r.grid  = seq(-10, 12, length.out = 1000)
 dens.normal = dnorm(r.grid, tails.table["spx", "mean"], tails.table["spx", "sigma"])
 dens.t      = dt((r.grid - ft.spx$par[1])/ft.spx$par[2], df = ft.spx$par[3])/ft.spx$par[2]
@@ -144,7 +143,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 9, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 hist( y, breaks = seq(0, 24.5, by = .5), freq = FALSE, col = "steelblue", border = "white", main = "",
       xlab = "Eurodollar rate (%)", ylab = "Density", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 y.grid = seq(0.01, 24, length.out = 600)
@@ -183,7 +181,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[3]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 alpha.grid = seq(0.01, 1, length.out = 500)
 plot( alpha.grid, lnL_exponential(alpha.grid, u)/1e3, type = "l", lwd = 2, col = "steelblue", xlab = expression(alpha),
       ylab = expression(ln*L(alpha) * " (thousands)"), cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -278,7 +275,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[4]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(3, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 prob.recession = pnorm(b.probit[1] + b.probit[2]*d.rec$spread)
 plot( d.rec$year.q, prob.recession, type = "n", ylim = c(0, 1), xlab = "",
       ylab = "Pr(recession)", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -313,7 +309,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[5]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(3, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 year.vix = as.numeric(substr(vix$date, 1, 4)) + (as.numeric(format(as.Date(vix$date), "%j")) - 1)/365
 vix.pa   = 100*sqrt(252*vix$h)
 plot( year.vix, vix.pa, type = "l", col = "grey60", xlab = "", ylab = "Volatility (% p.a.)",

@@ -128,7 +128,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[1]), width = 9, height = 6 ) }
 op = par( mfrow = c(2, 2), family = "serif", las = 1,
           mgp = c(2.6, .5, 0), mar = c(3, 4.5, 2, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 year.t1 = 1947 + (0:(length(dr)-1))/12        # dates of r_{t+1}, January 1947 to February 1991
 for (g in c(0, 0.5, 1, 1.5)){
   plot( year.t1, dr/r.0^g, type = "l", col = "steelblue", xlab = "", ylab = "",
@@ -201,7 +200,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 9, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(2.6, .5, 0), mar = c(4, 4.5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 r.grid = seq(0.01, 17, length.out = 600)
 hist( r, breaks = seq(0, 17, by = 0.5), freq = FALSE, col = "steelblue", border = "white", main = "", ylim = c(0, 0.25),
       xlab = "3 month interest rate (% p.a.)", ylab = "Density", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )

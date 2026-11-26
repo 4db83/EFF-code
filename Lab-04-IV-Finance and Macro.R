@@ -69,7 +69,6 @@ op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mar = c(5, 5, 1, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 plot( 1e4*vix$h, 100*vix$ret, pch = 16, cex = .4, col = adjustcolor("steelblue", .4),
       xlab = expression("VIX-implied daily variance " * h[t] * " (x " * 10^4 * ")"),
       ylab = "Daily return (%)", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -205,7 +204,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(3, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 plot( year.tr, tr$i, type = "l", lwd = 2, col = "steelblue", ylim = c(-6, 20), xlab = "", ylab = "Percent",
       cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 lines(year.tr, tr$pi, col = "red3", lwd = 2)

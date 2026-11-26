@@ -114,7 +114,6 @@ op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mar = c(5, 5, 1, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 z.grid = seq(-4, 4, length.out = 801)
 plot( z.grid, dnorm(z.grid), type = "l", lwd = 2, col = "grey50", lty = 2, ylim = c(0, 0.62), xlab = "z", ylab = "Density",
       cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -216,7 +215,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 11, height = 7.5 ) }
 op = par( mfrow = c(2, 2), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 VIX.grid = seq(9, 75, length.out = 300)
 p.grid   = conditional_parameters(theta.c, log(VIX.grid/sqrt(252)))
 m.grid   = sst_moments(p.grid$nu, p.grid$lambda)
@@ -243,7 +241,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[3]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(3, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 year.y = as.numeric(substr(vix$date[-1], 1, 4)) + (as.numeric(format(as.Date(vix$date[-1]), "%j")) - 1)/365
 VaR.skew   = p.c$mu + p.c$sigma*q_sst(0.01, p.c$nu, p.c$lambda)
 VaR.normal = mu.n + sd.n*qnorm(0.01)

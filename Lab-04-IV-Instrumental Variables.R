@@ -189,7 +189,6 @@ op = par( mfrow = c(1, 3), family = "serif", las = 1,
           mar = c(4, 4, 1, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 for (j in 1:3){
   b.j = b.iv[,j]
   b.j = b.j[b.j > -1 & b.j < 3]

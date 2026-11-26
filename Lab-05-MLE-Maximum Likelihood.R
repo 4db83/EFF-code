@@ -68,7 +68,6 @@ op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mar = c(5, 5, 1, 1),   # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 theta.grid = seq(0.01, 0.99, length.out = 500)
 plot( theta.grid, L_bern(theta.grid, x.wwl), type = "l", lwd = 2, col = "steelblue", xlab = expression(theta),
       ylab = expression(L(theta*"|"*x)), cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
@@ -121,7 +120,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 9, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(3.0, .5, 0), mar = c(5, 5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 hist( y, breaks = seq(0, 220, by = 10), freq = FALSE, col = "steelblue", border = "white", main = "",
       xlab = "Strike duration (days)", ylab = "Density", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 y.grid = seq(0, 220, length.out = 400)

@@ -39,7 +39,6 @@ op = par( mfrow = c(2, 2), family = "serif", las = 1,
           mar = c(4, 4.5, 1, 1), # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 
 # panel a) and b)
 plot( x, y.a, type = "l", lwd = 2, col = "steelblue", ylim = c(-13, 24),

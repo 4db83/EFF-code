@@ -91,7 +91,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[1]), width = 11, height = 4.5 ) }
 op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mgp = c(2.6, .5, 0), mar = c(4, 4.5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 plot( n.grid, recursive[, "kurtosis"], type = "l", lwd = 2, col = "steelblue",
       xlab = "Number of daily returns used", ylab = "Sample kurtosis", cex.lab = fnt, cex.axis = fnt-.1, xaxt = "n", yaxt = "n" )
 abline(h = 3, col = "gray40", lty = 2)

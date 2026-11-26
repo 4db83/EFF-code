@@ -90,7 +90,6 @@ op = par( mfrow = c(2, 2), family = "serif", las = 1,
           mar = c(4, 4.5, 1, 1), # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 zgrd = seq(-4, 4, length.out = 400)
 for (j in 1:length(sample.sizes)){
   hist( Z[Z[,j] < 4 & Z[,j] > -4, j], breaks = 60, freq = FALSE, col = "steelblue", border = "white", main = "",

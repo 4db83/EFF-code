@@ -103,7 +103,6 @@ op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mar = c(4, 4.5, 1, 1), # bottom, left, top, right per plot, position of the subplots inside the total plot area
           oma = c(1, 1, 1, 1),   # outer margins for overall spacing
           tcl = -0.25)           # shorter tick marks
-if (print2pdf == 1) {use_dark_plots("white") }
 gamma.grid = seq(-30, 10, length.out = 401)
 H.grid = sapply(z.list, function(z) sapply(gamma.grid, h_ccapm, z = z, x.1 = x.1, R.1 = R.1)/sd(z))
 clrs = c("steelblue", "red3", "green4")
@@ -189,7 +188,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[2]), width = 9, height = 4.5 ) }
 op = par( mfrow = c(1, 2), family = "serif", las = 1,
           mgp = c(2.6, .5, 0), mar = c(4, 4.5, 2, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 gamma.grid = seq(0, 30, length.out = 301)
 h.grid = sapply(gamma.grid, h_premium, R.c = R.c, R.s = R.s, R.b = R.b)
 plot( gamma.grid, h.grid, type = "l", lwd = 2, col = "steelblue", xlab = expression(gamma), ylab = expression(h(gamma)),

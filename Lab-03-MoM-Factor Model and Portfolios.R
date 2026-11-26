@@ -174,7 +174,6 @@ fnt = 1.8 # font size
 if (print2pdf == 1){fnt = 1.35; pdf( paste0(path2graphics, pdf_name[1]), width = 9, height = 4.5 ) }
 op = par( mfrow = c(1, 1), family = "serif", las = 1,
           mgp = c(2.6, .5, 0), mar = c(4, 4.5, 1, 1), oma = c(1, 1, 1, 1), tcl = -0.25)
-if (print2pdf == 1) {use_dark_plots("white") }
 w.grid  = seq(-0.5, 1.5, length.out = 401)
 sd_portfolio = function(w, S2) sqrt( 252*(w^2*S2[1,1] + (1 - w)^2*S2[2,2] + 2*w*(1 - w)*S2[1,2]) )
 S.pre  = gmv.pre$S[1:2, 1:2]
