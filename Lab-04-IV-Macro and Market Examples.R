@@ -91,7 +91,7 @@ print(round(coef_robust(iv.br.low), 4))
 # [W2020] Computer Exercise C15.4 (data intdef, annual, 1948 - 2003)
 data("intdef", package = "wooldridge")
 fisher = subset(intdef, !is.na(inf_1))                       # omit the first year, as in the exercise
-cat(sprintf(" n = %d years (%d - %d); corr(inf, inf_1) = %.4f\n", nrow(fisher), min(fisher$year), max(fisher$year),
+cat(sprintf(" n = %d years (%d - %d); Corr(inf, inf_1) = %.4f\n", nrow(fisher), min(fisher$year), max(fisher$year),
             cor(fisher$inf, fisher$inf_1)))
 # a. OLS of the 3 month T-bill rate on inflation
 ols.fisher = lm(i3 ~ inf, data = fisher)

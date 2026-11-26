@@ -162,7 +162,7 @@ r.s  = log(1 + R.s)
 r.b  = log(1 + R.b)
 dc   = log(1 + R.c)
 gamma.lognormal = (mean(r.s - r.b) + var(r.s)/2)/cov(dc, r.s)
-cat(sprintf(' Lognormal: mean(r.s - r.b) = %.4f, var(r.s)/2 = %.4f, cov(dc, r.s) = %.5f = %.3f x %.4f x %.4f, gamma = %.2f\n',
+cat(sprintf(' Lognormal: mean(r.s - r.b) = %.4f, Var(r.s)/2 = %.4f, Cov(dc, r.s) = %.5f = %.3f x %.4f x %.4f, gamma = %.2f\n',
             mean(r.s - r.b), var(r.s)/2, cov(dc, r.s), cor(dc, r.s), sd(dc), sd(r.s), gamma.lognormal))
 SR.premium = mean(R.s - R.b)/sd(R.s - R.b)
 cat(sprintf(' Sharpe ratio of R.s - R.b = %.4f; Hansen-Jagannathan bound: gamma >= SR/sd(dc) = %.2f\n',
